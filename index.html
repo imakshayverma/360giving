@@ -1,0 +1,1008 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Who has funded what themes throughout the years? - A look into 360Giving's dataset covering 280,000 grants</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.5/css/selectize.default.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond:300,400,500,600,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <meta name="viewport" content="width=1240" maximum-scale=1 minimum-scale=1>
+    <style type="text/css">
+    body {
+        font-family: "Lato", sans-serif;
+        background: rgb(233, 234, 229) url(bg.png);
+        /* fallback for old browsers */
+    }
+
+    .outer-box {
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.19), 0 3px 9px rgba(0, 0, 0, 0.23);
+        border-radius: 8px;
+        border: 1px solid rgba(128, 128, 128, 0.51);
+        margin: 40px 50px;
+        background: white;
+        position: relative;
+    }
+
+    header {
+        padding: 20px;
+        /* font-family: 'Playfair Display', serif; */
+        font-family: 'Cormorant Garamond', serif;
+        /* text-align: center; */
+        background: rgba(208, 168, 37, 0.69) url(bg.png);
+        /*background: rgba(128, 128, 128, 0.25) url(bg.png);*/
+        padding-top: 30px;
+        padding-bottom: 30px;
+        margin: 0px -15px;
+        border: 1px;
+        border-bottom: 5px solid #45505A;
+        margin-bottom: 30px;
+        border-radius: 8px 8px 0px 0px;
+    }
+
+    header h1 {
+        /* text-align: center; */
+        margin-left: 30px;
+        font-weight: 500;
+        margin-bottom: 0px;
+    }
+
+    header .sub {
+        font-family: 'Lato', serif;
+        font-size: 17px;
+        margin-left: 35px;
+        font-weight: 300;
+        color: #000000ab;
+        /* text-align: left; */
+    }
+
+    .clear-options {
+        float: left;
+        display: block;
+        padding: 5px 10px;
+        color: rgba(0, 0, 0, 0.68);
+        border: 1px solid #ddd;
+        cursor: pointer;
+        border-radius: 0px 4px 4px 0px;
+        border: 1px solid rgba(0, 0, 0, 0.23);
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+        font-weight: 900;
+    }
+
+    .clear-col {
+        padding-left: 0px;
+    }
+
+    .search-col {
+        /*padding-left: 60px;*/
+    }
+
+    .input-div {
+        padding-right: 0px;
+    }
+
+    .input-text {
+        font-family: "Lato", sans-serif;
+        font-weight: 700;
+        font-size: 17px;
+    }
+
+    footer {
+        background: #455059;
+        border-radius: 0px 0px 8px 9px;
+        padding: 30px;
+        text-align: center;
+        padding-bottom: 10px;
+    }
+
+    .developer-text {
+        color: white;
+        font-weight: 300;
+        font-family: "Lato", sans-serif;
+        font-size: 18px;
+    }
+
+    span.developer-name {
+        font-size: 28px;
+        font-weight: 700;
+    }
+
+    .developer-text .social-media-links a {
+        margin: 0px 4px;
+        color: white;
+        font-size: 30px;
+    }
+
+    .footer-copyright {
+        color: white;
+        font-family: "Lato", sans-serif;
+        font-weight: 400;
+    }
+
+    .footer-copyright a {
+        color: wheat;
+    }
+
+    .g-y.g-axis g.tick text {
+        font-family: Lato, sans-serif;
+    }
+
+    span.org-name {
+        font-weight: 700;
+        font-family: "Lato", sans-serif;
+    }
+
+    g.g-yaxis-sub text {
+        font-family: "Lato", sans-serif;
+        font-weight: 600;
+    }
+    </style>
+    <style>
+    .g-content {
+        position: relative;
+        font: 11px sans-serif;
+        width: 970px;
+        height: 1600px;
+    }
+
+    .g-axis {
+        pointer-events: none;
+    }
+
+    .g-axis line {
+        fill: none;
+        stroke: #000;
+        shape-rendering: crispEdges;
+    }
+
+    .g-axis path {
+        display: none;
+    }
+
+    .g-y.g-axis text {
+        font: bold 14px sans-serif;
+    }
+
+    .g-y.g-axis line {
+        stroke: #ccc;
+        stroke-dasharray: 1, 1;
+    }
+
+    .g-organizations circle {
+        fill: #ddd;
+        stroke: rgba(0, 0, 0, 0.65);
+        stroke-width: .5px;
+    }
+
+    .g-organizations circle.g-active {
+        stroke-width: 3px;
+        opacity: 1;
+    }
+
+
+    .g-searching .g-organizations circle:not(.g-match) {
+        fill-opacity: .1;
+        stroke-width: 0px !important;
+        pointer-events: none;
+    }
+
+    .g-key-color path {
+        display: none;
+    }
+
+    .g-key-color line {
+        stroke: #000;
+        shape-rendering: crispEdges;
+    }
+
+    .btn.focus,
+    .btn:focus {
+        outline: 0;
+        box-shadow: none;
+    }
+
+    .sub-text {
+        font-weight: 300;
+    }
+    </style>
+    <style type="text/css">
+    .g-x.g-axis g.tick {
+        font-size: 12px;
+        font-weight: 400;
+        fill: rgba(0, 0, 0, 0.71);
+        font-family: Open Sans, sans-serif;
+    }
+
+    .selectize-input {
+        border: 1px solid rgba(0, 0, 0, 0.23);
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    }
+    </style>
+    <style type="text/css">
+    .tooltip {
+        font-family: "Lato", sans-serif;
+        position: absolute;
+        top: 100px;
+        left: 100px;
+        -moz-border-radius: 5px;
+        border-radius: 5px;
+        border: 1px solid rgba(128, 128, 128, 0.48);
+        /* background: #222222; */
+        background: #fff;
+        opacity: 1;
+        /* color: #eeeeee; */
+        color: black;
+        width: 600px;
+        font-size: 14px;
+        z-index: 10;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.19), 0 3px 9px rgba(0, 0, 0, 0.23);
+    }
+
+    .top-row {
+        padding: 10px 20px;
+        background: rgb(228, 229, 224);
+        color: rgba(0, 0, 0, 0.71);
+        border-radius: 5px 5px 0px 0px;
+    }
+
+    .org-name {
+        max-width: 80%;
+        font-weight: 600;
+        display: inline-block;
+        font-size: 16px;
+    }
+
+    .org-year {
+        display: inline-block;
+        float: right;
+        font-weight: 700;
+    }
+
+    .second-row {
+        padding: 10px;
+        font-weight: 700;
+        padding-left: 20px;
+        /* background: #155591; */
+    }
+
+    .third-row {
+        padding: 0px 20px 20px 20px;
+    }
+
+    .org-keywords {
+        font-weight: 300;
+        color: black;
+    }
+
+    span.keywords {
+        font-weight: 400;
+        font-size: 14px;
+    }
+
+    g.annotation-note-content {
+        font-family: "Lato", sans-serif;
+        font-size: 14px;
+    }
+
+    text.annotation-note-label {
+        font-weight: 300;
+    }
+
+    button.btn.keyword-modal {
+        margin-top: -6px;
+        background-color: transparent;
+    }
+
+    .help-text-img {
+        text-align: center;
+        margin-top: 25px;
+        /* border: 1px solid #DDD; */
+    }
+
+    img.help-1 {
+        border: 1px solid #ddd;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    }
+
+    .key-dot {
+        border-radius: 2px;
+        display: inline-block;
+        height: 10px;
+        margin-right: .5em;
+        width: 20px;
+    }
+
+    .legend {
+        margin-right: 20px;
+    }
+
+    .top5 {
+        background: #004687;
+    }
+
+    .next5 {
+        background: #FBA827;
+    }
+
+    .others {
+        background: #86C232;
+    }
+
+    .legend1 {
+        line-height: 1em;
+        font-weight: 100;
+    }
+    </style>
+    <style type="text/css">
+    .scrolltop {
+        display: none;
+        width: 100%;
+        margin: 0 auto;
+        position: fixed;
+        bottom: 20px;
+        right: 10px;
+    }
+
+    .scroll {
+        position: absolute;
+        right: 20px;
+        border-radius: 7px;
+        bottom: 20px;
+        background: #b2b2b2;
+        background: rgba(178, 178, 178, 0.5);
+        padding: 20px;
+        text-align: center;
+        margin: 0 0 0 0;
+        cursor: pointer;
+        transition: 0.5s;
+        -moz-transition: 0.5s;
+        -webkit-transition: 0.5s;
+        -o-transition: 0.5s;
+    }
+
+    .scroll:hover {
+        background: rgba(178, 178, 178, 1.0);
+        transition: 0.5s;
+        -moz-transition: 0.5s;
+        -webkit-transition: 0.5s;
+        -o-transition: 0.5s;
+    }
+
+    .scroll:hover .fa {
+        padding-top: -10px;
+    }
+
+    .scroll .fa {
+        font-size: 30px;
+        margin-top: -5px;
+        margin-left: 1px;
+        transition: 0.5s;
+        -moz-transition: 0.5s;
+        -webkit-transition: 0.5s;
+        -o-transition: 0.5s;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="outer-box">
+        <div class="container-fluid">
+            <header>
+                <h1>Who has funded what themes throughout the years?</h1>
+                <div class="row">
+                    <div class="sub-heading sub col-lg-8">A look into 360Giving's dataset covering 280,000 grants by Identifying Trends by using Keywords(Themes) based filtering methodology.The scope of data includes the whole dataset to analyse and create the visualization. The themes are generated using keyword extraction algorithms from each records description.</div>
+                </div>
+                <div class='thetop'></div>
+            </header>
+            <section>
+                <div class="row">
+                    <div class="col-lg-8 offset-1 search-col">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <h5 class="input-text"> Select Themes/Places to find which years they were funded
+                                    <button type="button" class="btn keyword-modal" data-toggle="modal" data-target="#key-modal">
+                                    <i class="fa fa-info-circle" aria-hidden="true"></i>
+                                  </button>
+                                </h5>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-11 input-div">
+                                <select id="org-dropdown" name="state[]" multiple class="demo-default" placeholder="Select Keywords">
+                                </select>
+                            </div>
+                            <div class="col-lg-1 clear-col">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class=" col-lg-8 sub-text">
+                                <strong>Note</strong>: Each bubble represents a funding in a year for a given organization. Hover over the bubbles to know more details.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+        </section>
+        <section>
+            <div class="row">
+                <div class="col-lg-12 g-graphic" id="vis">
+                </div>
+            </div>
+        </section>
+        <footer>
+            <div class="developer-text"> Designed and Developed by -
+                <br><span class="developer-name">Akshay Verma</span>
+                <div class="social-media-links">
+                    <a href="https://twitter.com/imakshayverma" target="_blank">
+                        <i class="fa fa-twitter " aria-hidden="true"></i></a><a href="https://github.com/akshay2905" target="_blank">
+                        <i class="fa fa-github " aria-hidden="true"></i></a> <a href="https://www.facebook.com/Akshayverma29" target="_blank"><i class="fa fa-facebook-official " aria-hidden="true"></i></a> <a href="https://www.instagram.com/akshaysahab/" target="_blank"><i class="fa fa-instagram " aria-hidden="true"></i> </a>
+                    <a href="https://in.linkedin.com/in/akshay-verma-621b3098" target="_blank"> <i class="fa fa-linkedin-square " aria-hidden="true"></i></a>
+                </div>
+            </div>
+            <div class="footer-copyright">
+                <p>All work under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 (CC-BY)</a></p>
+            </div>
+        </footer>
+    </div>
+    <div class='scrolltop'>
+        <div class='scroll icon'><i class="fa fa-4x fa-angle-up"></i></div>
+    </div>
+    <div class="modal fade" id="key-modal">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">How to filter data? </h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <!-- Modal body -->
+                <div class="modal-body">
+                    Filter data points by selecting themes using the dropdown. The themes are generated by extracting keywords from each record. The bubbles(data points) which feature those selected keywords would be visible and others would be hidden. Try selecting multiple keywords which would help highlight a bigger cause.
+                    <div class="help-text-img">
+                        <img class="help-1" src="help1.png" width="750px">
+                    </div>
+                </div>
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.5/js/standalone/selectize.min.js"></script>
+    <script type="text/javascript" src="CustomTooltip.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3-annotation/2.3.0/d3-annotation.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.13.0/d3-legend.js"></script>
+    <script type="text/javascript">
+    function generateViz(data) {
+        var margin = {
+                top: 40,
+                right: 75,
+                bottom: 10,
+                left: 240
+            },
+            width = 1124 - margin.left - margin.right,
+            height,
+            tooltip = CustomTooltip("360_tooltip", 400),
+            tickExtension = 20;
+
+        const type = d3.annotationLabel
+
+        var formatCurrency = d3.format(".3s")
+
+        var x = d3.scaleLinear()
+            .domain([1996, 2018])
+            .rangeRound([0, width - 10])
+            .nice();
+
+        var y = d3.scaleBand();
+
+        var r = d3.scaleSqrt()
+            .domain([0, 1e9])
+            .range([0, 75]);
+
+        var z = ['#004687', '#FBA827', '#86C232']
+
+        var xAxis = d3.axisTop(x)
+            .ticks(10)
+            .tickFormat(d3.format(""));
+
+        var yAxis = d3.axisLeft(y)
+            .tickSize(-width - tickExtension * 2, 0)
+            .tickPadding(3);
+
+        var orgs = d3.nest()
+            .key(function(d) { return d["Funding Org:Name"]; })
+            .entries(data);
+
+        orgs.forEach(function(d) {
+            d["Total Amount"] = d.values.reduce(function(accumulator, currentValue) {
+                return accumulator + currentValue["Amount(GBP)"];
+            }, 0)
+        });
+
+        orgs = orgs.filter(function(d) {
+            return d["Total Amount"] != 0
+
+        })
+
+        orgs.sort(function(a, b) {
+            return b["Total Amount"] - a["Total Amount"];
+        });
+
+        orgs.map(function(d, i) {
+            d.rank = i + 1
+            if (parseInt(i / 5) > 1) {
+                d.group = 3
+            } else {
+                d.group = parseInt(i / 5) + 1
+            }
+
+        })
+
+        height = 80 * orgs.length;
+
+        var svg = d3.select(".g-graphic").append("svg")
+            .attr("height", height + margin.top + margin.bottom)
+            .attr("width", width + margin.left + margin.right)
+            .append("g")
+            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+        var gx = svg.append("g")
+            .attr("class", "g-x g-axis")
+            .call(xAxis);
+
+        var titleX = gx.append("text")
+            .attr("class", "g-title")
+            .attr("y", -9)
+            .style("text-anchor", "end");
+
+        titleX.append("tspan")
+            .attr("x", -80)
+            .style("font-weight", "bold")
+            .style("fill", "black")
+            .style("font-size", "14px")
+            .text("Years");
+
+        titleX.append("tspan")
+            .attr("x", -80)
+            .attr("dy", "1em")
+            .style("fill", "black")
+            .text("1990-2018");
+
+        var ysub = svg.append("g")
+            .attr("class", "g-yaxis-sub")
+
+        ysub.append("text")
+            .attr("class", "g-top5")
+            .attr("y", -200)
+            .attr("x", -300)
+            .attr("transform", "rotate(270)")
+            .text("Top 5 Funders over the Years")
+
+        ysub.append("text")
+            .attr("class", "g-next5")
+            .attr("y", -200)
+            .attr("x", -775)
+            .attr("transform", "rotate(270)")
+            .text("Next Top 5 Funders over the Years")
+
+
+        y.domain(orgs.map(function(d) {
+                return d.key;
+            }))
+            .range([50, height], 1);
+
+        var axis = svg.append("g")
+            .attr("class", "g-y g-axis g-y-axis-organizations")
+            .attr("transform", "translate(-" + tickExtension + ",-50)")
+            .call(yAxis.scale(y))
+            .call(yAxisWrap)
+            .style("stroke-opacity", 1)
+            .style("fill-opacity", 1)
+            .selectAll(".tick text")
+            .attr("x", -95)
+            .style("text-anchor", "start");
+
+        var organizations = svg.append("g")
+            .attr("class", "g-organizations")
+            .selectAll("g")
+            .data(orgs)
+            .enter().append("g")
+            .attr("transform", function(d) {
+                return "translate(0," + y(d.key) + ")";
+            })
+            .attr("class", function(d) {
+                return "group-" + d.group
+            });
+
+        var fundingOrg = organizations.append("g")
+            .attr("class", "g-organizations-company")
+            .selectAll("circle")
+            .data(function(d) {
+                return d.values;
+            })
+            .enter().append("circle")
+            .attr("cx", function(d) {
+                return x(d["Year"]);
+            })
+            .attr("cy", function(d) {
+                return y(d["Funding Org:Name"]) / 10000 - 10;
+            })
+            .attr("org", function(d) {
+                return d["Funding Org:Name"]
+            })
+            .attr("r", function(d) {
+                return r(d["Amount(GBP)"]);
+            })
+            .attr("data-status", "active")
+            .style("opacity", 0.9)
+            .on("mouseover", mouseover)
+            .on("mouseout", mouseout);
+
+
+        d3.selectAll(".g-organizations-company circle")
+            .style("fill", function(d, i, j) {
+                node = orgs.find(function(e) {
+                    return e.key == d["Funding Org:Name"]
+                })
+                return isNaN(d["Year"]) ? null : z[node.group - 1];
+            })
+
+        var cnt = 0
+
+        d3.selectAll(".g-y g.tick")
+            .each(function(d) {
+                d.data = orgs.find(function(e) {
+                    return (d == e.key)
+                })
+            })
+            .attr("transform", function(d, i, j) {
+                element = orgs.find(function(e) {
+                    return (d == e.key)
+                })
+
+                if (element.group == 2) {
+                    d3.select(this).selectAll("text ")
+                        .attr("y", -10)
+                    if (cnt == 0) {
+                        cnt += 1
+                        return "translate(0," + (parseFloat(d3.select(this).attr("transform").split(",")[1]) + 80) + ")";
+                    } else {
+                        cnt += 1
+                        return "translate(0," + (parseFloat(d3.select(this).attr("transform").split(",")[1]) + (100 - (cnt * 15))) + ")";
+                    }
+                } else {
+                    return d3.select(this).attr("transform")
+                }
+            })
+
+        d3.selectAll(".group-2")
+            .attr("transform", function(d, i) {
+
+                if (i == 0) {
+                    return "translate(0," + (parseFloat(d3.select(this).attr("transform").split(",")[1]) + 80) + ")";
+                } else {
+                    return "translate(0," + (parseFloat(d3.select(this).attr("transform").split(",")[1]) + (85 - (i * 15))) + ")"
+                }
+            })
+
+        cnt2 = 0
+
+        d3.selectAll(".g-y g.tick")
+            .each(function(d) {
+                d.data = orgs.find(function(e) {
+                    return (d == e.key)
+                })
+            })
+            .attr("transform", function(d, i, j) {
+                element = orgs.find(function(e) {
+                    return (d == e.key)
+                })
+
+                if (element.group == 3) {
+                    d3.select(this).selectAll("text ")
+                        .attr("y", -5)
+                    if (cnt2 == 0) {
+                        cnt2 += 1
+                        return "translate(0," + (parseFloat(d3.select(this).attr("transform").split(",")[1]) + 110) + ")";
+                    } else {
+                        cnt2 += 1
+                        return "translate(0," + (parseFloat(d3.select(this).attr("transform").split(",")[1]) + (140 - (cnt2 * 25))) + ")";
+                    }
+                } else {
+                    return d3.select(this).attr("transform")
+                }
+            })
+
+        d3.selectAll(".group-3")
+            .attr("transform", function(d, i) {
+                if (i == 0) {
+                    return "translate(0," + (parseFloat(d3.select(this).attr("transform").split(",")[1]) + 110) + ")";
+                } else {
+                    return "translate(0," + (parseFloat(d3.select(this).attr("transform").split(",")[1]) + (115 - (i * 25))) + ")"
+                }
+            })
+
+        d3.selectAll(".g-y g.tick")
+            .each(function(d) {
+                d.data = orgs.find(function(e) {
+                    return (d == e.key)
+                })
+            })
+            .attr("transform", function(d, i, j) {
+                element = orgs.find(function(e) {
+                    return (d == e.key)
+                })
+                if (element.group == 4) {
+                    return "translate(0," + (parseFloat(d3.select(this).attr("transform").split(",")[1]) + 250) + ")";
+                } else {
+                    return d3.select(this).attr("transform")
+                }
+            })
+
+        d3.selectAll(".g-y g.tick text")
+            .append("tspan")
+            .attr("dy", "1.3em")
+            .attr("x", "-125")
+            .html(function(d) {
+                element = orgs.find(function(e) {
+                    return (d == e.key)
+                })
+                return "&#163;" + formatCurrency(element["Total Amount"]).replace(/G/, "B");
+            })
+            .style("font-weight", 100)
+
+        var subText = svg.append("g")
+            .attr("class", "g-sub-text")
+
+        const annotations = [{
+                note: {
+                    label: "The only data point for year before 1997.",
+                    title: "Gatsby Charitable Foundation. 1991"
+                },
+                x: 57,
+                y: 400,
+                dy: 60,
+                dx: 10
+            },
+            {
+                note: {
+                    label: "for any given year.",
+                    title: "Highest Funding by an Organization"
+                },
+                x: 870,
+                y: 320,
+                dy: 10,
+                dx: 10
+            }
+        ]
+
+        const makeAnnotations = d3.annotation()
+            .type(d3.annotationCalloutElbow)
+            .annotations(annotations)
+            .textWrap({ note: { wrap: 60 } })
+
+        d3.select("svg")
+            .append("g").attr("class", "annotation-group").call(makeAnnotations)
+
+        d3.select(".g-graphic").select("svg")
+            .attr("height", 4300)
+
+        function mouseover(d) {
+            if (this.getAttribute("data-status") == "active") {
+                fundingOrg.filter(function(c) {
+                        return c != d
+                    })
+                    .style("opacity", 0.2)
+                    .style("stroke-width", "0px")
+
+                d3.select(this)
+                    .style("opacity", 1)
+                    .style("stroke-width", "3px");
+            }
+            showDetails(d, this)
+        }
+
+        function titleCase(str) {
+            str = str.split(' ');
+            for (var i = 0; i < str.length; i++) {
+                str[i] = str[i].charAt(0).toUpperCase() + str[i].slice(1);
+            }
+            return str.join(' ');
+        }
+
+        function showDetails(data, element) {
+
+            var majorKeywords = "";
+            for (var i = 0; i < 15 & i < data["Keywords"].length; i++) {
+                if (i != 0) {
+                    majorKeywords += ", " + titleCase(data["Keywords"][i])
+                } else {
+                    majorKeywords += titleCase(data["Keywords"][i])
+                }
+            }
+
+            var content = "<div class='top-row'><div class='org-name'>  " + data["Funding Org:Name"] + "  </div><div class='org-year'> " + data["Year"] + "</div></div>";
+
+            content += "<div class='second-row'> <div class='org-funding'>Total Funding : " + "&#163;" + formatCurrency(data["Amount(GBP)"]).replace(/G/, "B") + " (" + "&#163;" + d3.format(",")(data["Amount(GBP)"]) + ")  </div></div> "
+            content += "<div class='third-row'> "
+
+            if (majorKeywords != "") {
+                content += "<div class='org-keywords'> Major Keywords : <span class='keywords'>" + majorKeywords + "</span></div>"
+            } else {
+                content += "<div class='org-keywords'> Major Keywords : <span class='keywords'>" + "N.A" + "</span></div>"
+            }
+
+            content += "</div>"
+            tooltip.showTooltip(content, d3.event);
+        }
+
+        function mouseout(d) {
+            fundingOrg
+                .style("opacity", 0.9)
+                .style("stroke-width", "1px")
+
+            tooltip.hideTooltip();
+        }
+
+        function generateKeyDropdown() {
+
+            d3.csv("keyword_list1.csv", function(data) {
+                list = data.map(function(d) {
+                    return d["key"]
+                })
+
+                d3.select("#org-dropdown").selectAll("option")
+                    .data(list)
+                    .enter()
+                    .append("option")
+                    .text(function(d) {
+                        return d;
+                    })
+
+                var selectWrap = $('#org-dropdown').selectize({
+                    create: false,
+                    persist: true,
+                    placeholder: "Select Keyword(s)",
+                    plugins: ['remove_button'],
+                    onChange: function(d) {
+                        updateChart(d)
+
+                    }
+                });
+
+                var control = selectWrap[0].selectize;
+
+                d3.select("div.clear-col")
+                    .append("span")
+                    .attr("class", "clear-options")
+                    .text("x")
+                    .on("click", function(d) {
+                        control.clear();
+                    })
+            })
+        }
+
+        generateKeyDropdown();
+
+        function updateChart(values) {
+            orgSet = new Set()
+
+            if (values.length) {
+                svg.classed("g-searching", true);
+
+                fundingOrg.classed("g-match", function(d) {
+                    for (var i in values) {
+                        if (d["Keywords"].includes(values[i].toLowerCase())) {
+                            orgSet.add(d["Funding Org:Name"]);
+                            return true
+                        }
+                    }
+                    return false
+                })
+
+                organizations.selectAll("circle.g-match")
+                    .attr("data-status", function(d) {
+                        return "active"
+                    })
+
+                organizations.selectAll("circle:not(.g-match)")
+                    .attr("data-status", function(d) {
+                        return "disable"
+                    })
+                d3.select(".g-y-axis-organizations")
+                    .selectAll("g.tick text")
+                    .filter(function(d) {
+                        return !orgSet.has(d)
+                    })
+                    .style("fill", "rgba(0, 0, 0, 0.2)")
+
+                d3.select(".g-y-axis-organizations")
+                    .selectAll("g.tick text")
+                    .filter(function(d) {
+                        return orgSet.has(d)
+                    })
+                    .style("fill", "black")
+                    .style("font-weight", 600);
+
+                d3.select(".g-y-axis-organizations")
+                    .selectAll("g.tick line")
+                    .filter(function(d) {
+                        return !orgSet.has(d)
+                    })
+                    .style("stroke", "rgba(204, 204, 204, 0.21)")
+
+                d3.select(".g-y-axis-organizations")
+                    .selectAll("g.tick line")
+                    .filter(function(d) {
+                        return orgSet.has(d)
+                    })
+                    .style("stroke", "#ddd")
+                d3.select("g.annotation-group")
+                    .style("display", "none")
+            } else {
+                organizations.selectAll("circle")
+                    .attr("data-status", function(d) {
+                        return "active"
+                    })
+                d3.select(".g-y-axis-organizations")
+                    .selectAll("g.tick text")
+                    .style("fill", "black")
+                    .style("font-weight", 600)
+                d3.select("g.annotation-group")
+                    .style("display", "contents")
+
+                svg.classed("g-searching", false);
+                fundingOrg.classed("g-match", false);
+            }
+        }
+    }
+
+    function yAxisWrap(g, data) {
+        g.selectAll(".tick text")
+            .attr("dy", null)
+            .each(function(s) {
+                var p = s.slice(s.length / 2).split(" ").slice(1).join(" ").length;
+                tickText = s.slice(0, s.length - p) + "\n" + s.slice(s.length - p);
+
+                d3.select(this)
+                    .attr("data-org-name", function(d) {
+                        return tickText
+                    })
+                    .text(null).selectAll("tspan")
+                    .data(tickText.split("\n"))
+                    .enter().append("tspan")
+                    .attr("x", this.getAttribute("x") - 125)
+                    .attr("dy", function(d, i) {
+                        return (i / 2 + 0.5) + "em";
+                    })
+                    .text(function(d) {
+                        return d;
+                    });
+            });
+    }
+
+    d3.json("360grantv3.json", function(error, data) {
+        generateViz(data);
+    })
+    </script>
+    <script type="text/javascript">
+    $(window).scroll(function() {
+        if ($(this).scrollTop() > 100) {
+            $('.scrolltop:hidden').stop(true, true).fadeIn();
+        } else {
+            $('.scrolltop').stop(true, true).fadeOut();
+        }
+    });
+    $(function() { $(".scroll").click(function() { $("html,body").animate({ scrollTop: $(".thetop").offset().top }, "1000"); return false }) })
+    </script>
+</body>
+
+</html>
