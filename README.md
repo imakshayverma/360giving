@@ -8,7 +8,7 @@ Who has funded what themes throughout the years?
 Identifying Trendsby using Keywords(Themes) based filtering methodology.
 
 ### Scope of Data Analysed and Visualized. 
-The [entire dataset](http://grantnav.threesixtygiving.org/api/grants.csv) was analysed to understand different trends. 
+The [entire dataset](http://grantnav.threesixtygiving.org/api/grants.csv) was analysed to understand different trends. All the funding organizations were considered for the analysis. 
 
 ### Challenges - 
 - Classification of grant to particular sectors. Though platforms are available which can help us to find the sector in which receipeint organization works in, only 40% of records could have been classified with that methodology. 
