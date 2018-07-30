@@ -26,3 +26,5 @@ The initial question can be disseminated into two parts. Who has funded. and wha
 
 ### Caveats - 
 The keywords are specific in nature and may/maynot point to a larger sector in general. While some may be very specific and dont need any context, some may point to a bigger cause without the specifivity. Though the question doesnt ask specifically of how much each theme was funded by an organization in a year, the currect visualiation has a lack of provision to answer that question  
+
+#####  Note : Data Preparation and Analsyis Scripts would be published soon! 
