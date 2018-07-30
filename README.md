@@ -5,7 +5,7 @@ Submission for [360 Giving  Data Visualization Challenge](https://challenge.thre
 Who has funded what themes throughout the years?
 
 ### Solution : 
-Identifying Trends Keywords(Themes) based filtering.
+Identifying Trendsby using Keywords(Themes) based filtering methodology.
 
 ### Scope of Data Analysed and Visualized. 
 The [entire dataset](http://grantnav.threesixtygiving.org/api/grants.csv) was analysed to understand different trends. 
