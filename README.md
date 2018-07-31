@@ -20,6 +20,7 @@ The initial question can be disseminated into two parts. "Who has funded?" and "
 ### Methodology : 
 - Analysed and assessed the dataset. Given that many parameters had different proportions of missing values. 
 - Extracted Keywords from each record using Grant Title name and Grant Description. 
+- Unified the currency by converting them using Historical Currency Exchange data. The conversions were based on the grant award date.  
 - Complied, grouped and indexed data by Funding Organization Name and Years of Funding. 
 - Refined the keywords through another intervention to weed out outlier(keywords which dont make sense).
 - Designed visualization using D3. 
