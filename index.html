@@ -415,7 +415,7 @@
             <header>
                 <h1>Who has funded what themes throughout the years?</h1>
                 <div class="row">
-                    <div class="sub-heading sub col-lg-8">A look into 360Giving's dataset covering 280,000 grants by Identifying Trends by using Keywords(Themes) based filtering methodology.The scope of data includes the whole dataset to analyse and create the visualization. The themes are generated using keyword extraction algorithms from each records description.</div>
+                    <div class="sub-heading sub col-lg-8">A look into 360Giving's dataset covering 280,000 grants by Identifying Trends by using Keywords(Themes) based filtering methodology. The scope of data includes the whole dataset to analyse and create the visualization. The themes are generated using keyword extraction algorithms from each records description.</div>
                 </div>
                 <div class='thetop'></div>
             </header>
@@ -467,7 +467,7 @@
                         </div>
                         <div class="key col-sm-3">
                             <span class="color-key next5"></span> 
-                            <span class="key-text">Next Top 5 Funders.</span>
+                            <span class="key-text">Next 5 Big Funders.</span>
                         </div>
                         <div class="key col-sm-3">
                             <span class="color-key others"></span> 
@@ -479,7 +479,7 @@
             <div class="row">
                 <div class="col-lg-10 offset-1" >
                     <div class="bottom-note">
-                        <strong>Note : </strong> The Keywords listed in the tooltips aren't are not exhaustive. They are listed based on the frequency of their exsistence across different grants for that organization for a particular year. The keywords sequence also doesnot represent the extent of funding for the particular theme.
+                        <strong>Note : </strong> The Keywords listed in the tooltips aren't are not exhaustive. They are listed based on the frequency of their existence across different grants for that organization for a particular year. The keywords sequence also doesn't represent the extent of funding for the particular theme.
                     </div>
                 </div>
             </div>
@@ -646,7 +646,14 @@
             .attr("y", -200)
             .attr("x", -775)
             .attr("transform", "rotate(270)")
-            .text("Next Top 5 Funders over the Years")
+            .text("Next 5 Big Funders over the Years")
+
+        ysub.append("text")
+            .attr("class", "g-others")
+            .attr("y", -200)
+            .attr("x", -1275)
+            .attr("transform", "rotate(270)")
+            .text("Other Funders over the Years")
 
 
         y.domain(orgs.map(function(d) {
@@ -925,7 +932,7 @@
                 var selectWrap = $('#org-dropdown').selectize({
                     create: false,
                     persist: true,
-                    placeholder: "Select Keyword(s)",
+                    placeholder: "Select Keyword(s) : Ex. - Veterans, Cricket, Criminal Justice System",
                     plugins: ['remove_button'],
                     onChange: function(d) {
                         updateChart(d)
