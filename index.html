@@ -205,6 +205,12 @@
     .sub-text {
         font-weight: 300;
     }
+
+    .color-key-placeholder {
+        padding-bottom: 10px;
+        font-weight: 100;
+        font-size: 14px;
+    }
     </style>
     <style type="text/css">
     .g-x.g-axis g.tick {
@@ -333,6 +339,7 @@
         line-height: 1em;
         font-weight: 100;
     }
+
     .color-key {
         width: 33px;
         height: 20px;
@@ -341,6 +348,7 @@
         box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
         /* margin: 10px 0px; */
     }
+
     .key-text {
         margin-left: 10px;
         display: inline-block;
@@ -349,13 +357,30 @@
         font-weight: 600;
         vertical-align: middle;
     }
+
     .meta-key {
         margin-bottom: 20px;
     }
+
     .bottom-note {
         font-weight: 100;
         font-size: 14px;
         margin-bottom: 20px;
+    }
+
+    .social-media-links a:hover {
+        text-decoration: none;
+    }
+
+    .external-links {
+        color: white;
+        font-weight: 800;
+        padding-bottom: 15px;
+        font-size: 20px;
+    }
+
+    .external-links a {
+        color: wheat;
     }
     </style>
     <style type="text/css">
@@ -445,47 +470,47 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col-lg-3 ">
+                        <div class="row">
+                            <div class="col-sm-12 color-key-placeholder">
+                                Color Key -
+                            </div>
+                            <div class="key col-md-12">
+                                <span class="color-key top5"></span>
+                                <span class="key-text">Top 5 Funders.</span>
+                            </div>
+                            <div class="key col-md-12">
+                                <span class="color-key next5"></span>
+                                <span class="key-text">Next 5 Big Funders.</span>
+                            </div>
+                            <div class="key col-md-12">
+                                <span class="color-key others"></span>
+                                <span class="key-text">Other Funders.</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+            </section>
+            <section>
+                <div class="row">
+                    <div class="col-lg-12 g-graphic" id="vis">
+                    </div>
+                </div>
+            </section>
+            <section>
+                <div class="row">
+                    <div class="col-lg-10 offset-1">
+                        <div class="bottom-note">
+                            <strong>Note : </strong> The Keywords listed in the tooltips aren't are not exhaustive. They are listed based on the frequency of their existence across different grants for that organization for a particular year. The keywords sequence also doesn't represent the extent of funding for the particular theme.
+                        </div>
+                    </div>
+                </div>
+            </section>
         </div>
-        </section>
-        <section>
-            <div class="row">
-                <div class="col-lg-12 g-graphic" id="vis">
-                </div>
-            </div>
-        </section>
-        <section>
-            <div class="row meta-key">
-                <div class="col-lg-10 offset-1">
-                    <div class="row">
-                        <div class="col-sm-2">
-                            Color Key - 
-                        </div>
-                        <div class="key col-sm-3">
-                            <span class="color-key top5"></span> 
-                            <span class="key-text">Top 5 Funders.</span>
-                        </div>
-                        <div class="key col-sm-3">
-                            <span class="color-key next5"></span> 
-                            <span class="key-text">Next 5 Big Funders.</span>
-                        </div>
-                        <div class="key col-sm-3">
-                            <span class="color-key others"></span> 
-                            <span class="key-text">Other Funders.</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-10 offset-1" >
-                    <div class="bottom-note">
-                        <strong>Note : </strong> The Keywords listed in the tooltips aren't are not exhaustive. They are listed based on the frequency of their existence across different grants for that organization for a particular year. The keywords sequence also doesn't represent the extent of funding for the particular theme.
-                    </div>
-                </div>
-            </div>
-            
-        </section>
         <footer>
+            <div class="external-links">
+                Links - <a href="https://challenge.threesixtygiving.org/resources" target="_blank">Data</a> | <a href="https://github.com/akshay2905/360giving" target="_blank">Github Repo</a>
+            </div>
             <div class="developer-text"> Designed and Developed by -
                 <br><span class="developer-name">Akshay Verma</span>
                 <div class="social-media-links">
@@ -499,32 +524,31 @@
                 <p>All work under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 (CC-BY)</a></p>
             </div>
         </footer>
-    </div>
-    <div class='scrolltop'>
-        <div class='scroll icon'><i class="fa fa-4x fa-angle-up"></i></div>
-    </div>
-    <div class="modal fade" id="key-modal">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <!-- Modal Header -->
-                <div class="modal-header">
-                    <h4 class="modal-title">How to filter data? </h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-                <!-- Modal body -->
-                <div class="modal-body">
-                    Filter data points by selecting themes using the dropdown. The themes are generated by extracting keywords from each record. The bubbles(data points) which feature those selected keywords would be visible and others would be hidden. Try selecting multiple keywords which would help highlight a bigger cause.
-                    <div class="help-text-img">
-                        <img class="help-1" src="help1.png" width="750px">
+        <div class='scrolltop'>
+            <div class='scroll icon'><i class="fa fa-4x fa-angle-up"></i></div>
+        </div>
+        <div class="modal fade" id="key-modal">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title">How to filter data? </h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
-                </div>
-                <!-- Modal footer -->
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        Filter data points by selecting themes using the dropdown. The themes are generated by extracting keywords from each record. The bubbles(data points) which feature those selected keywords would be visible and others would be hidden. Try selecting multiple keywords which would help highlight a bigger cause.
+                        <div class="help-text-img">
+                            <img class="help-1" src="help1.png" width="750px">
+                        </div>
+                    </div>
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
     </div>
     <script src="https://d3js.org/d3.v4.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -855,7 +879,7 @@
             .append("g").attr("class", "annotation-group").call(makeAnnotations)
 
         d3.select(".g-graphic").select("svg")
-            .attr("height", 4300)
+            .attr("height", 4250)
 
         function mouseover(d) {
             if (this.getAttribute("data-status") == "active") {
@@ -1007,8 +1031,10 @@
                         return orgSet.has(d)
                     })
                     .style("stroke", "#ddd")
+
                 d3.select("g.annotation-group")
                     .style("display", "none")
+
             } else {
                 organizations.selectAll("circle")
                     .attr("data-status", function(d) {
@@ -1018,6 +1044,11 @@
                     .selectAll("g.tick text")
                     .style("fill", "black")
                     .style("font-weight", 600)
+
+                d3.select(".g-y-axis-organizations")
+                    .selectAll("g.tick line")
+                    .style("stroke", "#ccc")
+
                 d3.select("g.annotation-group")
                     .style("display", "contents")
 
@@ -1066,12 +1097,19 @@
     $(function() { $(".scroll").click(function() { $("html,body").animate({ scrollTop: $(".thetop").offset().top }, "1000"); return false }) })
     </script>
     <script>
-          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-          })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-          ga('create', 'UA-83420837-2', 'auto');
-          ga('send', 'pageview');
+    (function(i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function() {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+    ga('create', 'UA-83420837-2', 'auto');
+    ga('send', 'pageview');
     </script>
 </body>
 
