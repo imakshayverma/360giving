@@ -561,7 +561,7 @@
     <script type="text/javascript">
     function generateViz(data) {
         var margin = {
-                top: 40,
+                top: 220,
                 right: 75,
                 bottom: 10,
                 left: 240
@@ -635,6 +635,7 @@
 
         var gx = svg.append("g")
             .attr("class", "g-x g-axis")
+            .attr("transform", "translate(-" + 0+ ",-180)")
             .call(xAxis);
 
         var titleX = gx.append("text")
@@ -727,10 +728,23 @@
             .attr("r", function(d) {
                 return r(d["Amount(GBP)"]);
             })
+            .attr("data-org_year", function(d){
+                return d["Funding Org:Name"].split(' ').join('_') + "-" + d["Year"];
+            })
             .attr("data-status", "active")
             .style("opacity", 0.9)
             .on("mouseover", mouseover)
             .on("mouseout", mouseout);
+
+        d3.select(".g-y-axis-organizations g.tick")
+        .attr("transform", "translate(0, 0)")
+
+        d3.select(".g-organizations .group-1")
+        .attr("transform", "translate(0, -40)")
+        
+        d3.select(".g-organizations .group-1 circle[data-org_year='Department_for_Transport-2016']")
+        .attr("r", 120)
+
 
 
         d3.selectAll(".g-organizations-company circle")
@@ -740,6 +754,8 @@
                 })
                 return isNaN(d["Year"]) ? null : z[node.group - 1];
             })
+
+        
 
         var cnt = 0
 
@@ -833,6 +849,7 @@
                 }
             })
 
+
         d3.selectAll(".g-y g.tick text")
             .append("tspan")
             .attr("dy", "1.3em")
@@ -854,7 +871,7 @@
                     title: "Gatsby Charitable Foundation. 1991"
                 },
                 x: 57,
-                y: 400,
+                y: 580,
                 dy: 60,
                 dx: 10
             },
@@ -863,10 +880,10 @@
                     label: "for any given year.",
                     title: "Highest Funding by an Organization"
                 },
-                x: 870,
-                y: 320,
+                x: 840,
+                y: 220,
                 dy: 10,
-                dx: 10
+                dx: -10
             }
         ]
 
@@ -879,7 +896,7 @@
             .append("g").attr("class", "annotation-group").call(makeAnnotations)
 
         d3.select(".g-graphic").select("svg")
-            .attr("height", 4250)
+            .attr("height", 4450)
 
         function mouseover(d) {
             if (this.getAttribute("data-status") == "active") {
@@ -905,7 +922,7 @@
         }
 
         function showDetails(data, element) {
-
+            console.log(data, element)
             var majorKeywords = "";
             for (var i = 0; i < 15 & i < data["Keywords"].length; i++) {
                 if (i != 0) {
@@ -986,6 +1003,7 @@
 
                 fundingOrg.classed("g-match", function(d) {
                     for (var i in values) {
+                        //console.log(d, i)
                         if (d["Keywords"].includes(values[i].toLowerCase())) {
                             orgSet.add(d["Funding Org:Name"]);
                             return true
